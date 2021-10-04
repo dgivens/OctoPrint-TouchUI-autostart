@@ -1,6 +1,6 @@
 #!/bin/bash
-source $DIR/functions/do_exit
-source $DIR/functions/color
+source "${DIR}/functions/do_exit"
+source "${DIR}/functions/color"
 
 successfull () {
 	if [ $1 -eq 0 ]

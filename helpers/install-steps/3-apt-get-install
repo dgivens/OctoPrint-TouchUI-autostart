@@ -1,6 +1,6 @@
 #!/bin/bash
-source $DIR/functions/successfull
-source $DIR/functions/check_package
+source "${DIR}/functions/successfull"
+source "${DIR}/functions/check_package"
 
 [ $(check_package xinit) == 0 ] && DEPENDENCIES+=("xinit")
 [ $(check_package xinput) == 0 ] && DEPENDENCIES+=("xinput")

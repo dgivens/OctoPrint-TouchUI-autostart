@@ -1,6 +1,6 @@
 #!/bin/bash
-source $DIR/functions/do_exit
-source $DIR/functions/color
+source "${DIR}/functions/do_exit"
+source "${DIR}/functions/color"
 
 # Check if stretch is installed and force GLDriver for Chromium
 if [ "$ENABLE_GLDRIVER" == true ]

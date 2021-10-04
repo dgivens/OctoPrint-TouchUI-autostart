@@ -1,5 +1,5 @@
 #!/bin/bash
-source $DIR/functions/successfull
+source "${DIR}/functions/successfull"
 
 if [ "$(systemctl get-default)" == "graphical.target" ]
 then

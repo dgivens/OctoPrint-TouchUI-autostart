@@ -1,5 +1,5 @@
 #!/bin/bash
-source $DIR/functions/successfull
+source "${DIR}/functions/successfull"
 
 BOOT=$(whiptail --radiolist "Configure options for start-up, select your option: " 20 85 5 \
 	"Console" "Text console, requiring user to login" OFF \

@@ -6,11 +6,11 @@ DEBUG=false
 BROWSER="chromium-browser"
 
 # Get CLI override (e.g. -browser my-browser or --force)
-source $DIR/functions/getopts
+source "${DIR}/functions/getopts"
 
 # Load local functions
-source $DIR/functions/successfull
-source $DIR/functions/color
+source "${DIR}/functions/successfull"
+source "${DIR}/functions/color"
 
 # Enforce this helper to be run as root
 if [ $(id -u) -ne 0 ]
@@ -34,9 +34,9 @@ echo -e "$(color 'touchui' 'Uninstall helper v0.0.1')"
 runCmd service touchui stop
 
 # Execute steps
-source $DIR/uninstall-steps/0-boot-to-command
-source $DIR/uninstall-steps/1-apt-get-remove
-source $DIR/uninstall-steps/2-remove-startup
+source "${DIR}/uninstall-steps/0-boot-to-command"
+source "${DIR}/uninstall-steps/1-apt-get-remove"
+source "${DIR}/uninstall-steps/2-remove-startup"
 
 # Show success message
 echo ""

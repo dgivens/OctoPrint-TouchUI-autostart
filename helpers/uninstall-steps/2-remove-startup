@@ -1,5 +1,5 @@
 #!/bin/bash
-source $DIR/functions/successfull
+source "${DIR}/functions/successfull"
 
 echo ""
 echo "Removing touchui from update-rc.d:"

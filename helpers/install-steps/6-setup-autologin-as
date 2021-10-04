@@ -1,5 +1,5 @@
 #!/bin/bash
-source $DIR/functions/successfull
+source "${DIR}/functions/successfull"
 
 OCTOPRINT_EXEC=$(ps -ef | grep octoprint | grep -v grep | awk '{print $9}')
 OCTOPRINT_EXEC_USER=$(ps -ef | grep octoprint | grep -v grep | awk '{print $1}')
