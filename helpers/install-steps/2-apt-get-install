@@ -9,6 +9,7 @@ source $DIR/functions/check_package
 [ $(check_package x11-xserver-utils) == 0 ] && DEPENDENCIES+=("x11-xserver-utils")
 [ $(check_package matchbox) == 0 ] && DEPENDENCIES+=("matchbox")
 [ $(check_package unclutter) == 0 ] && DEPENDENCIES+=("unclutter")
+[ $(check_package raspi-config) == 0 ] && DEPENDENCIES+=("raspi-config")
 [ $(check_package $BROWSER) == 0 ] && DEPENDENCIES+=("$BROWSER")
 
 echo ""
@@ -21,8 +22,31 @@ then
 
 	echo ""
 	echo "Installing dependencies (${DEPENDENCIES[@]}):"
+	local i=0
+	for dep in ${DEPENDENCIES[*]}
+	do
+		if [[ "${dep}" == "raspi-config" ]]
+		then
+			unset DEPENDENCIES[${i}]
+			INSTALL_RASPI_CONFIG=1
+			break
+		fi
+		(( i++ ))
+	done
+
 	runCmd apt-get install --yes --no-install-recommends ${DEPENDENCIES[@]}
 	successfull $?
+
+	if [[ ${INSTALL_RASPI_CONFIG} -eq 1 ]]
+	then
+		TMPDIR=$(mktemp -d)
+		VERSION=$(curl -s -L https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/ | grep 'raspi-config_[0-9]\+_all.deb' | tail -n1 | sed 's/^.*raspi-config_\(.*\)_all.deb.*$/\1/')
+		runCmd curl -s -o "${TMPDIR}/raspi-config_${VERSION}_all.deb"  "https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_$latest_all.deb"
+		runCmd dpkg -i "${TMPDIR}/raspi-config_${VERSION}_all.deb"
+		runCmd apt-get install --fix-broken --yes
+		successfull $?
+		rm -rf ${TMPDIR}
+	fi
 else
 	echo "Skipping installation of dependencies:"
 	echo " - All dependencies are already installed"
