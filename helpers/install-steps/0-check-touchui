@@ -2,7 +2,7 @@
 source $DIR/functions/do_exit
 source $DIR/functions/color
 
-if [ -z $(find /home/ -type f -name 'touchui.bundled.js*') ]
+if [ -z $(find $OCTOPRINT_BASE -type f -name 'touchui.bundled.js*') ]
 then
 	echo ""
 	echo -e "$(color 'red' 'TouchUI was not found!')"

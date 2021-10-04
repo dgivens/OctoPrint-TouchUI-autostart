@@ -7,6 +7,7 @@ BROWSER="chromium-browser"
 FORCE=false
 XORG_DIR="/usr/share/X11/xorg.conf.d"
 OCTOPRINT_CONFIG="/home/pi/.octoprint/config.yaml"
+OCTOPRINT_BASE="/home/pi/OctoPrint"
 ENABLE_GLDRIVER=false
 SKIP_SD_CHECK=false
 
@@ -42,8 +43,8 @@ runCmd service touchui stop
 # Execute steps
 source $DIR/install-steps/0-check-touchui
 source $DIR/install-steps/1-check-mounted-sd
-source $DIR/install-steps/2-boot-to-command
-source $DIR/install-steps/3-apt-get-install
+source $DIR/install-steps/2-apt-get-install
+source $DIR/install-steps/3-boot-to-command
 source $DIR/install-steps/4-xorg-setup
 source $DIR/install-steps/5-setup-startup
 source $DIR/install-steps/6-setup-autologin-as

@@ -10,6 +10,7 @@ Valid options:
     -b, --browser <value>    : overwrite which browser needs to be installed
     -x, --xorg <value>       : overwrite folder of xserver to search for existing config files
     -o, --octoprint <value>  : overwrite location of octoprint config yaml file
+	-p, --path				 : specify the base path for octoprint
     -s, --skip-sd-check      : skip sd card check
 "
 
@@ -47,6 +48,11 @@ do
 		;;
 		-o|--octoprint)
 		OCTOPRINT_CONFIG="$2"
+		shift # past argument
+		shift # past value
+		;;
+		-p|--path)
+		OCTOPRINT_BASE="$2"
 		shift # past argument
 		shift # past value
 		;;
